@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ljubavni Sajt</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background-color: #ffcccb;
+      color: #d6336c;
+      text-align: center;
+      min-height: 100vh;
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    button:hover {
+      background-color: #bf2a57;
+    }
+    .food-option {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="page1" class="page active">
+  <h1>❤️ Pritisni Me ❤️</h1>
+  <button onclick="showPage('page2')">Pritisni Me</button>
+</div>
+
+<div id="page2" class="page">
+  <h1>Rezerviši Dečka 💖</h1>
+  <button onclick="showPage('page3')">Rezerviši</button>
+</div>
+
+<div id="page3" class="page">
+  <h1>Izaberi Datum i Vreme 🗓️</h1>
+  <label>Dan i Mesec:</label>
+  <input type="date" id="date1"><br><br>
+  <label>Dan, Mesec i Godina:</label>
+  <input type="date" id="date2"><br><br>
+  <label>Vreme:</label>
+  <input type="time" id="time"><br><br>
+  <button onclick="showPage('page4')">Rezerviši Me</button>
+</div>
+
+<div id="page4" class="page">
+  <h1>Izaberi Hranu 🍕</h1>
+  <div class="food-option">
+    <label>
+      <input type="radio" name="food" value="Pasta"> Pasta
+    </label>
+  </div>
+  <div class="food-option">
+    <label>
+      <input type="radio" name="food" value="Pizza"> Pizza
+    </label>
+  </div>
+  <div class="food-option">
+    <label>
+      <input type="radio" name="food" value="Pilav"> Pilav
+    </label>
+  </div>
+  <div class="food-option">
+    <label>
+      <input type="radio" name="food" value="Hamburger"> Hamburger
+    </label>
+  </div>
+  <button onclick="showSummary()">Odaberi</button>
+</div>
+
+<div id="page5" class="page">
+  <h1>Čestitamo! 🎉</h1>
+  <p>Osvojili ste sastanak sa vašim dečkom!</p>
+  <p>Datum sastanka: <span id="chosenDate"></span></p>
+</div>
+
+<script>
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+  }
+
+  function showSummary() {
+    const date1 = document.getElementById('date1').value;
+    const date2 = document.getElementById('date2').value;
+    const time = document.getElementById('time').value;
+    const chosenDate = date2 || date1 + ' ' + time;
+    document.getElementById('chosenDate').innerText = chosenDate ? chosenDate : 'Datum nije odabran';
+
+    showPage('page5');
+  }
+</script>
+
+</body>
+</html>
